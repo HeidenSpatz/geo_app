@@ -46,7 +46,8 @@ geocode = RateLimiter(geolocator.geocode, min_delay_seconds=2)
 
 address = street + " " + housenr + ", " + city + " " + zip
 
-m = geemap.Map(center=[50.126, 8.707], zoom=18)
+
+
 if len(address) > 5:
     
     location = geolocator.geocode(address)
@@ -59,9 +60,11 @@ if len(address) > 5:
     #st.write(f"Lat, Lon: {lat}, {lon}")
     #st.write(location.raw)
     popup = f"lat, lon: {lat}, {lon}"
-    
+
+    m = geemap.Map(center=[lat, lon], zoom=15)
     m.add_basemap("ROADMAP")
-    m.add_marker(location=(lat, lon), popup=popup)
+    m.add_marker(location=(lat, lon), popup=popup)    
     m.to_streamlit(height=600)
 else:
+    m = geemap.Map(center=[50.12978175, 8.693144895303579], zoom=15)
     m.to_streamlit(height=600)
