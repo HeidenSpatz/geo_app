@@ -24,41 +24,20 @@ st.set_page_config(page_title='Geo App Demo',
 
 st.title("Geo App Demo")
 
-
-file = st.file_uploader('upload file')
-#file = pd.read_csv("https://github.com/HeidenSpatz/geo_app/blob/master/lon_lat.csv")
-
-df = pd.read_csv(file)
-df = df[df.lon != 0]
-
-#df.to_csv('test.csv',index=False)
-
-st.write(df.head())
+url = "https://raw.githubusercontent.com/HeidenSpatz/geo_app/master/lat_lon.csv"
+df = pd.read_csv(url, encoding='utf-8')
 
 
-districts_selected = st.multiselect("Select Districts", df['regio3'].unique())
-st.write(districts_selected)
-
+districts_selected = st.multiselect("Select Districts", df['regio3'].unique(), 'Bornheim')
 districts_data = df[df.regio3.isin(districts_selected)]
-st.write(districts_data)
+
 
 
 m = geemap.Map(locate_control=True, plugin_LatLngPopup=False)
+m = geemap.Map(center=[50.12978175, 8.693144895303579], zoom=5)
 m.add_points_from_xy(districts_data, "lon", "lat")
 
 m.to_streamlit()
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
