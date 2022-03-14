@@ -1,7 +1,11 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
+# import streamlit as st
+# import pandas as pd
+# import numpy as np
 import geemap.foliumap as geemap
+
+#import leafmap.foliumap as leafmap
+import pandas as pd
+import streamlit as st
 
 #OpenStreetMap API for geocoding
 from geopy.geocoders import Nominatim 
@@ -19,6 +23,41 @@ st.set_page_config(page_title='Geo App Demo',
 
 
 st.title("Geo App Demo")
+
+file = st.file_uploader('upload file')
+df = pd.read_csv(file,nrows=10)
+df = df[df.lon != 0]
+
+st.write(df)
+
+
+districts_selected = st.multiselect("Select Districts", df['regio3'].unique())
+st.write(districts_selected)
+
+districts_data = df[df.regio3.isin(districts_selected)]
+st.write(districts_data)
+
+
+m = geemap.Map(locate_control=True, plugin_LatLngPopup=False)
+m.add_points_from_xy(districts_data, "lon", "lat")
+
+m.to_streamlit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #------------------
 # get input
@@ -45,7 +84,6 @@ geolocator = Nominatim(user_agent="my_user_agent")
 geocode = RateLimiter(geolocator.geocode, min_delay_seconds=2)
 
 address = street + " " + housenr + ", " + city + " " + zip
-
 
 
 if len(address) > 5:
