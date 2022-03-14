@@ -8,6 +8,7 @@ streamlit = "*"
 streamlit-folium = "*"
 geemap = "*"
 geopy = "*"
+folium = "*"
 
 [dev-packages]
 
