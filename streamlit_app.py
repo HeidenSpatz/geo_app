@@ -26,13 +26,12 @@ st.title("Geo App Demo")
 
 
 file = st.file_uploader('upload file')
-
 #file = pd.read_csv("https://github.com/HeidenSpatz/geo_app/blob/master/lon_lat.csv")
 
 df = pd.read_csv(file)
 df = df[df.lon != 0]
 
-df.to_csv('test.csv',index=False)
+#df.to_csv('test.csv',index=False)
 
 st.write(df.head())
 
