@@ -24,11 +24,17 @@ st.set_page_config(page_title='Geo App Demo',
 
 st.title("Geo App Demo")
 
+
 file = st.file_uploader('upload file')
-df = pd.read_csv(file,nrows=10)
+
+#file = pd.read_csv("https://github.com/HeidenSpatz/geo_app/blob/master/lon_lat.csv")
+
+df = pd.read_csv(file)
 df = df[df.lon != 0]
 
-st.write(df)
+df.to_csv('test.csv',index=False)
+
+st.write(df.head())
 
 
 districts_selected = st.multiselect("Select Districts", df['regio3'].unique())
