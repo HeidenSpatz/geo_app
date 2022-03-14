@@ -1,11 +1,8 @@
-# import streamlit as st
-# import pandas as pd
-# import numpy as np
+import streamlit as st
+import pandas as pd
+import numpy as np
 import geemap.foliumap as geemap
 
-#import leafmap.foliumap as leafmap
-import pandas as pd
-import streamlit as st
 
 #OpenStreetMap API for geocoding
 from geopy.geocoders import Nominatim 
