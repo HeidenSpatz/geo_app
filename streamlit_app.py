@@ -19,7 +19,7 @@ st.set_page_config(page_title='Geo App Demo',
                 #menu_items: Get help, Report a Bug, About
 
 
-st.title("Geo App Demo")
+st.title("Geo App Demo - Change")
 
 url = "https://raw.githubusercontent.com/HeidenSpatz/geo_app/master/lat_lon.csv"
 df = pd.read_csv(url, encoding='utf-8')
