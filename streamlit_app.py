@@ -112,6 +112,8 @@ if app_type == "Basic Stats":
         st.write("df.describe()", df.describe())
         st.write("df.info()", df.info())
 
+    with st.expander("List of Offers per District"):
+        st.table(df.groupby(['regio3']).size().sort_values(ascending=False))
 
 
 
