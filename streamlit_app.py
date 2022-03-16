@@ -19,11 +19,20 @@ st.set_page_config(page_title='Geo App Demo',
                 layout='wide')
 
 
+@ st.cache
+def get_csv(url):
+    df = pd.read_csv(url, encoding='utf-8')
+    return df
+
+url = "https://raw.githubusercontent.com/HeidenSpatz/geo_app/master/lat_lon.csv"
+df = get_csv(url)
+
+
 # sidebar
 #------------------
 app_type = st.sidebar.selectbox(
     "This can be used to structure the app.",
-    ("Find Location", "ImmoScout Offers"), 
+    ("Find Location", "ImmoScout Offers", "Stats"), 
     index=0
 )
 
@@ -74,19 +83,10 @@ if app_type == "Find Location":
         m.to_streamlit(height=600)
 
 
-url = "https://raw.githubusercontent.com/HeidenSpatz/geo_app/master/lat_lon.csv"
-
-@ st.cache
-def get_csv(url):
-    df = pd.read_csv(url, encoding='utf-8')
-    return df
-
 
 
 if app_type == "ImmoScout Offers":
-    st.title("ImmoScout Offers")
-
-    df = get_csv(url)
+    st.title("ImmoScout Offers")    
 
     #districts_single = st.selectbox("Select One District", df['regio3'].unique())
     districts_selected = st.multiselect("Select Districts", df['regio3'].unique(), 'Bornheim')
@@ -100,6 +100,16 @@ if app_type == "ImmoScout Offers":
 
     m.to_streamlit()
 
+
+if app_type == "Stats":
+
+    st.header("Overview")
+    with st.expander("Click to see basic stats!"):
+        st.write("df.columns", list(df.columns))
+        st.write("df.head()", df.head())
+        st.write("df.astype(str)", df.astype(str).head())
+        st.write("df.describe()", df.describe())
+        st.write("df.info()", df.info())
 
 
 
