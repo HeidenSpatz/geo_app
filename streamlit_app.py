@@ -32,7 +32,7 @@ df = get_csv(url)
 #------------------
 app_type = st.sidebar.selectbox(
     "This can be used to structure the app.",
-    ("Find Location", "ImmoScout Offers", "Stats"), 
+    ("Find Location", "ImmoScout Offers", "Basic Stats"), 
     index=0
 )
 
@@ -101,9 +101,10 @@ if app_type == "ImmoScout Offers":
     m.to_streamlit()
 
 
-if app_type == "Stats":
+if app_type == "Basic Stats":
 
-    st.header("Overview")
+    st.header("Basic Stats")
+
     with st.expander("Click to see basic stats!"):
         st.write("df.columns", list(df.columns))
         st.write("df.head()", df.head())
