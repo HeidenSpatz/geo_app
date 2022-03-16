@@ -19,7 +19,13 @@ st.set_page_config(page_title='Geo App Demo',
                 layout='wide')
 
 
-st.title("Geo App Demo")
+# sidebar
+#------------------
+app_type = st.sidebar.selectbox(
+    "This can be used to structure the app.",
+    ("Find Location", "ImmoScout Offers"), 
+    index=0
+)
 
 
 if app_type == "Find Location":
