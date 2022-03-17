@@ -30,11 +30,11 @@ df = get_csv(url)
 
 # sidebar
 #------------------
-app_type = st.sidebar.selectbox("This can be used to structure the app.",
-    ("Find Location", "ImmoScout Offers", "Basic Stats"), index=0)
+#app_type = st.sidebar.selectbox("This can be used to structure the app.",
+#    ("Find Location", "ImmoScout Offers", "Basic Stats"), index=0)
 
-#app_type = st.selectbox("This can be used to structure the app.",
-#    ("Find Location", "ImmoScout Offers", "Basic Stats"),index=0)
+app_type = st.selectbox("This can be used to structure the app.",
+    ("Find Location", "ImmoScout Offers", "Basic Stats"),index=0)
 
 
 if app_type == "Find Location":
